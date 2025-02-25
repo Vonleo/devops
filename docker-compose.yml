@@ -1,0 +1,6 @@
+services:
+  hello:
+    image: 4creativedev/hello:v2
+    container_name: docker-noob
+    ports:
+      - "8080:80"
