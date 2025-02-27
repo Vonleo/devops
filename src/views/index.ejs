@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins Build & Chuck Norris Jokes</title>
+</head>
+<body>
+    <h1>Latest Jenkins Build</h1>
+    <% if (build) { %>
+        <p>Build Number: <%= build.number %></p>
+        <p>Status: <%= build.result %></p>
+        <p>Duration: <%= build.duration %>ms</p>
+        <p><a href="<%= build.url %>" target="_blank">View on Jenkins</a></p>
+    <% } else { %>
+        <p>Error fetching Jenkins build data.</p>
+    <% } %>
+
+    <h1>Get a Chuck Norris Joke</h1>
+    <button onclick="fetchJoke()">Get Joke</button>
+    <p id="joke"></p>
+
+    <script>
+        async function fetchJoke() {
+            const res = await fetch('/api/joke');
+            const data = await res.json();
+            document.getElementById('joke').innerText = data.joke;
+        }
+    </script>
+</body>
+</html>
