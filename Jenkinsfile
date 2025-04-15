@@ -10,17 +10,16 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+        stage('Build Docker Image') {
             steps {
-                sh 'echo "Running tests..." && exit 0'
+                sh 'docker build -t 4creativedev/hello:${env.BUILD_NUMBER}'
             }
         }
 
-        stage('Build & Deploy') {
+        stage('Push to Repo') {
             steps {
-                sh 'echo "Starting application..."'
-                sh 'node src/server.js &'
+                sh 'docker push 4creativedev/hello:${env.BUILD_NUMBER}'
             }
-        }
+        }        
     }
 }
