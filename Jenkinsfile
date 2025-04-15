@@ -1,4 +1,10 @@
 pipeline {
+    environment {
+        registry = '4creativedev/hello:'
+        tag = "${env.BUILD_NUMBER}-DEV"
+       
+    }
+    
     agent {
         docker { image 'node:latest' }
     }
@@ -12,13 +18,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                sh 'docker build -t 4creativedev/hello:"${env.BUILD_NUMBER}" .'
+               sh "docker build -t " + registry + tag + " ."
             }
         }
 
         stage('Push to Repo') {
             steps {
-                sh 'docker push 4creativedev/hello:"${env.BUILD_NUMBER}"'
+                sh "docker push " + registry + tag
             }
         }        
     }
