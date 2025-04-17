@@ -7,7 +7,7 @@ pipeline {
     }
     
     agent {
-        docker { image 'node:latest' }
+        any
     }
 
     stages {
