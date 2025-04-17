@@ -2,6 +2,7 @@ pipeline {
     environment {
         registry = '4creativedev/hello:'
         tag = "${env.BUILD_NUMBER}-DEV"
+        HOME = '.'
        
     }
     
