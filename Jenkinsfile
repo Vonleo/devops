@@ -28,6 +28,7 @@ pipeline {
                     sh 'docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}'
                     sh "docker push " + registry + tag
                     sh 'docker logout'
+                }
             }
         }        
     }
